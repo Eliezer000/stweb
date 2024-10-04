@@ -6,18 +6,15 @@
 }
 
 @font-face {
-  font-family: 'Hola';
-  src: url('./assets/Fonts/fontnueva.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Dan';
+  src: url('../public/fontnueva.otf') 
 }
 
 @font-face {
-  font-family: 'Danmark';
-  src: url('./assets/Fonts/Fontspring-DEMO-danmarkurw-med.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Danm';
+  src: url('../public/fontnueva2.otf') 
 }
+
 
 /* Tailwind CSS básico */
 @tailwind base;
@@ -25,7 +22,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Hola', sans-serif;  /* Cambia de Raleway a Danmark */
+  font-family: 'Dan', sans-serif;  /* Cambia de Raleway a Danmark */
   background-color: #f7f3ed;  /* Color de fondo */
   margin: 0;
   padding: 0;
@@ -38,7 +35,7 @@ h1 {
 }
 
 p {
-  font-family: 'Hola', sans-serif;  /* Cambia de Raleway a Danmark */
+  font-family: 'Dan', sans-serif;  /* Cambia de Raleway a Danmark */
   color: #1E2359;
   font-size: 1.5rem;
 }

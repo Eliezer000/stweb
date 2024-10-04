@@ -51,7 +51,7 @@ const Hero = () => {
       {/* Sección principal con ajustes responsivos */}
       <main className="flex flex-col items-center justify-center h-[calc(100vh-80px)] text-center px-4">
         {/* Texto SOFTNOVA adaptado */}
-        <h1 className="font-coolvetica text-[5rem] sm:text-[7rem] md:text-[8rem] lg:text-[239.435px] leading-none text-[#1E2359] mb-4">
+        <h1 className=" text-[5rem] sm:text-[7rem] md:text-[8rem] lg:text-[239.435px] leading-none text-[#1E2359] mb-4">
           SOFTNOVA
         </h1>
 
