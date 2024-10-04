@@ -4,6 +4,12 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('./assets/Fonts/coolvetica rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* Tailwind CSS básico */
 @tailwind base;
