@@ -56,7 +56,7 @@ const Hero = () => {
         </h1>
 
         {/* Subtítulo (responsive y alineado correctamente) */}
-        <h2 className="font-raleway text-[1.25rem] sm:text-[1.75rem] md:text-[2rem] lg:text-[45.487px] leading-normal text-[#1E2359]">
+        <h2 className="font-Hola text-[1.25rem] sm:text-[1.75rem] md:text-[2rem] lg:text-[45.487px] leading-normal text-[#1E2359]">
           Soluciones empresariales integrales
         </h2>
 

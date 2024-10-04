@@ -4,9 +4,17 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Coolvetica';
-  src: url('./assets/Fonts/coolvetica rg.otf') format('opentype');
+  font-family: 'Hola';
+  src: url('./assets/Fonts/fontnueva.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Danmark';
+  src: url('./assets/Fonts/Fontspring-DEMO-danmarkurw-med.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -17,20 +25,20 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Raleway', sans-serif;
-  background-color: #f7f3ed;  /* Color de fondo según la referencia */
+  font-family: 'Hola', sans-serif;  /* Cambia de Raleway a Danmark */
+  background-color: #f7f3ed;  /* Color de fondo */
   margin: 0;
   padding: 0;
 }
 
 h1 {
   font-family: 'Coolvetica', sans-serif;
-  color: #1E2359;  /* Color del texto según la referencia */
-  font-size: 6rem;  /* Tamaño ajustado al diseño */
+  color: #1E2359;  /* Color del texto */
+  font-size: 6rem;  /* Tamaño del texto */
 }
 
 p {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Hola', sans-serif;  /* Cambia de Raleway a Danmark */
   color: #1E2359;
   font-size: 1.5rem;
 }
