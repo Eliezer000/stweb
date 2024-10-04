@@ -7,37 +7,33 @@
 
 @font-face {
   font-family: 'Dan';
-  src: url('../public/fontnueva.otf') 
+  src: url('../public/fontnueva.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Danm';
-  src: url('../public/fontnueva2.otf') 
+  src: url('../public/fontnueva2.otf') format('opentype');
 }
 
-
-/* Tailwind CSS básico */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Dan', sans-serif;  /* Cambia de Raleway a Danmark */
-  background-color: #f7f3ed;  /* Color de fondo */
+  font-family: 'Dan', sans-serif;
+  background-color: #f7f3ed;
   margin: 0;
   padding: 0;
 }
 
 h1 {
   font-family: 'Coolvetica', sans-serif;
-  color: #1E2359;  /* Color del texto */
-  font-size: 6rem;  /* Tamaño del texto */
+  color: #1E2359;
 }
 
 p {
-  font-family: 'Dan', sans-serif;  /* Cambia de Raleway a Danmark */
+  font-family: 'Dan', sans-serif;
   color: #1E2359;
-  font-size: 1.5rem;
 }
 
 .container {
@@ -45,5 +41,58 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+/* Estilos adicionales para mejorar la estética y la responsividad */
+@media (max-width: 640px) {
+  header {
+    padding: 1rem;
+  }
+
+  .menu-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  header {
+    padding: 1.5rem;
+  }
+
+  .menu-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (min-width: 1025px) {
+  header {
+    padding: 2rem;
+  }
+
+  .menu-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Animaciones suaves para los elementos interactivos */
+button, a {
+  transition: all 0.3s ease;
+}
+
+button:hover, a:hover {
+  transform: translateY(-2px);
+}
+
+/* Estilos para las tarjetas de servicios */
+.service-card {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
