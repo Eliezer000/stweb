@@ -14,6 +14,7 @@ const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const servicesRef = useRef(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -213,11 +214,11 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* Nueva sección: Nuestro servicio All-in-one */}
-      <section className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-8 md:px-16 py-20 overflow-hidden">
+      {/* Sección: Nuestro servicio All-in-one (Rediseñada) */}
+      <section className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-4 sm:px-8 md:px-16 py-20 overflow-hidden">
         <div className="max-w-[1318px] mx-auto relative">
           <motion.h2
-            className="text-4xl md:text-5xl font-semibold mb-8 text-center"
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 sm:mb-8 text-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -225,7 +226,7 @@ const Hero = () => {
             Nuestro servicio All-in-one
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl text-center mb-12"
+            className="text-base sm:text-lg md:text-xl text-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -233,77 +234,105 @@ const Hero = () => {
             Conectamos nuestros servicios principales para ofrecer una solución integral que llevará tu negocio al siguiente nivel.
           </motion.p>
 
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <svg className="w-full h-auto" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <motion.path
-                d="M400 50 L200 250 L400 450 L600 250 L400 50"
-                stroke="#1E2359"
-                strokeWidth="2"
-                fill="none"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M400 450 L400 550"
-                stroke="#1E2359"
-                strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1, ease: "easeInOut", delay: 2 }}
-              />
-            </svg>
-
-            <AllInOneServiceCard
-              icon={NetworkIcon}
-              title="Sistema de Gestión"
-              description="Automatiza y optimiza tus procesos internos"
-              position="top"
-            />
-            <AllInOneServiceCard
-              icon={ScreenAppIcon}
-              title="Web y App"
-              description="Crea una presencia digital impactante"
-              position="left"
-            />
-            <AllInOneServiceCard
-              icon={CartIcon}
-              title="Ecommerce"
-              description="Vende tus productos en línea de manera eficiente"
-              position="right"
-            />
-            <AllInOneServiceCard
-              icon={CheckIcon}
-              title="Proyecto Listo"
-              description="Tu negocio optimizado y listo para crecer"
-              position="bottom"
-            />
-          </motion.div>
+          <div className="relative w-full max-w-3xl mx-auto">
+            <AllInOneServiceFlow />
+          </div>
 
           <motion.div
-            className="mt-16 text-center"
+            className="mt-8 sm:mt-16 text-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <h3 className="text-3xl font-semibold mb-4">¿Cómo funciona?</h3>
-            <p className="text-lg mb-8">
+            <h3 className="text-2xl sm:text-3xl font-semibold mb-4">¿Cómo funciona?</h3>
+            <p className="text-base sm:text-lg mb-6 sm:mb-8">
               Nuestro enfoque integral combina estos servicios para crear una estrategia personalizada que impulsa el crecimiento de tu negocio:
             </p>
-            <ol className="text-left list-decimal list-inside space-y-4">
-              <li>Optimizamos tus procesos internos con nuestro Sistema de Gestión.</li>
-              <li>Creamos una presencia digital atractiva con nuestro servicio de Web y App.</li>
-              <li>Implementamos una plataforma de Ecommerce para maximizar tus ventas en línea.</li>
-              <li>Entregamos un proyecto listo para impulsar tu negocio al siguiente nivel.</li>
+            <ol className="text-left list-decimal list-inside space-y-2 sm:space-y-4">
+              <li className="text-sm sm:text-base">Optimizamos tus procesos internos con nuestro Sistema de Gestión.</li>
+              <li className="text-sm sm:text-base">Creamos una presencia digital atractiva con nuestro servicio de Web y App.</li>
+              <li className="text-sm sm:text-base">Implementamos una plataforma de Ecommerce para maximizar tus ventas en línea.</li>
+              <li className="text-sm sm:text-base">Entregamos un proyecto listo para impulsar tu negocio al siguiente nivel.</li>
             </ol>
           </motion.div>
         </div>
       </section>
+
+      {/* Nueva sección: Ya funcionan con softnova */}
+      <section className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-8 md:px-16 py-20">
+        <div className="max-w-[1318px] mx-auto">
+          <motion.h2
+            className="text-4xl md:text-5xl font-semibold mb-2 text-center"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Ya funcionan con softnova
+          </motion.h2>
+          <motion.p
+            className="text-lg md:text-xl text-center mb-12"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Descubre algunos de los proyectos que hemos completado y cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos.
+          </motion.p>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={index}
+                project={project}
+                onClick={() => setSelectedProject(project)}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Modal para detalles del proyecto */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white rounded-lg p-8 max-w-2xl w-full"
+              initial={{ scale: 0.9, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 50 }}
+            >
+              <h3 className="text-2xl font-bold mb-4">{selectedProject.title}</h3>
+              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-64 object-cover rounded-lg mb-4" />
+              <p className="text-lg mb-4">{selectedProject.description}</p>
+              <div className="flex justify-between items-center">
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#1E2359] text-white px-4 py-2 rounded-full font-semibold hover:bg-[#2a307a] transition-colors"
+                >
+                  Ver proyecto
+                </a>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="text-[#1E2359] font-semibold hover:underline"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -324,26 +353,92 @@ const ServiceCard = ({ icon, title, items }) => (
   </motion.div>
 );
 
-const AllInOneServiceCard = ({ icon, title, description, position }) => {
-  const positionClasses = {
-    top: "absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
-    left: "absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2",
-    right: "absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2",
-    bottom: "absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2",
-  };
+const AllInOneServiceFlow = () => {
+  const services = [
+    { icon: NetworkIcon, title: "Sistema de Gestión", description: "Automatiza y optimiza tus procesos internos" },
+    { icon: ScreenAppIcon, title: "Web y App", description: "Crea una presencia digital impactante" },
+    { icon: CartIcon, title: "Ecommerce", description: "Vende tus productos en línea de manera eficiente" },
+    { icon: CheckIcon, title: "Proyecto Listo", description: "Tu negocio optimizado y listo para crecer" },
+  ];
 
   return (
-    <motion.div
-      className={`${positionClasses[position]} bg-white border-2 border-[#1E2359] p-4 rounded-lg flex flex-col items-center text-center w-48 sm:w-56 md:w-64`}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.8 }}
-    >
-      <img src={icon} alt={title} className="w-12 h-12 mb-2" />
-      <h3 className="text-lg font-semibold mb-1">{title}</h3>
-      <p className="text-xs">{description}</p>
-    </motion.div>
+    <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-4">
+      {services.map((service, index) => (
+        <React.Fragment key={index}>
+          <ServiceNode service={service} />
+          {index < services.length - 1 && <Arrow />}
+        </React.Fragment>
+      ))}
+    </div>
   );
 };
+
+const ServiceNode = ({ service }) => (
+  <motion.div
+    className="bg-white border-2 border-[#1E2359] p-4 rounded-lg flex flex-col items-center text-center w-48"
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }}
+    whileHover={{ scale: 1.05 }}
+  >
+    <img src={service.icon} alt={service.title} className="w-12 h-12 mb-2" />
+    <h3 className="text-lg font-semibold mb-1">{service.title}</h3>
+    <p className="text-xs">{service.description}</p>
+  </motion.div>
+);
+
+const Arrow = () => (
+  <motion.div
+    className="hidden md:block"
+    initial={{ opacity: 0, width: 0 }}
+    animate={{ opacity: 1, width: "2rem" }}
+    transition={{ duration: 0.5 }}
+  >
+    <svg className="w-8 h-8 text-[#1E2359]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  </motion.div>
+);
+
+const ProjectCard = ({ project, onClick }) => (
+  <motion.div
+    className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer"
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.3 }}
+    onClick={onClick}
+  >
+    <div className="relative h-48">
+      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+        <p className="text-white text-lg font-semibold">Ver detalles</p>
+      </div>
+    </div>
+    <div className="p-4">
+      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+      <p className="text-sm line-clamp-2">{project.description}</p>
+    </div>
+  </motion.div>
+);
+
+const projects = [
+  {
+    title: "Proyecto 1",
+    description: "Descripción detallada del proyecto 1. Aquí puedes explicar los objetivos, desafíos y resultados del proyecto.",
+    image: "/placeholder.svg?height=300&width=400",
+    link: "https://proyecto1.com"
+  },
+  {
+    title: "Proyecto 2",
+    description: "Descripción detallada del proyecto 2. Destaca las características únicas y el impacto que tuvo en el negocio del cliente.",
+    image: "/placeholder.svg?height=300&width=400",
+    link: "https://proyecto2.com"
+  },
+  {
+    title: "Proyecto 3",
+    description: "Descripción detallada del proyecto 3. Menciona las tecnologías utilizadas y cómo se adaptaron a las necesidades específicas del cliente.",
+    image: "/placeholder.svg?height=300&width=400",
+    link: "https://proyecto3.com"
+  },
+];
 
 export default Hero;
