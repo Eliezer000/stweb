@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from './assets/Logopng.png';
-import ArrowRight from './assets/arrow-right-svgrepo-com.svg';
+import { ArrowDown, ArrowRight } from 'lucide-react';
 import MenuIcon from './assets/menu-duo-lg-svgrepo-com.svg';
 import CloseIcon from './assets/basic-cancel-close-cross-delete-exit-svgrepo-com.svg';
 import CartIcon from './assets/cart.svg';
 import MetaIcon from './assets/meta.svg';
 import ScreenAppIcon from './assets/screenapp.svg';
 import NetworkIcon from './assets/network.svg';
-import CheckIcon from './assets/check.svg';
+import SEOIcon from './assets/seo.svg';
+import HostingIcon from './assets/hosting.svg';
+import mercadoLibre from './assets/mercadolibre.svg';
+import wordpress from './assets/wordpress.svg';
+import tiendaNube from './assets/tiendanube.svg';
+import phpIcon from './assets/php.svg';
+import jsIcon from './assets/javascript.svg';
+import githubIcon from './assets/github.svg';
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,7 +42,7 @@ const Hero = () => {
 
   return (
     <div className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway relative">
-      {/* Header fijo con efecto blur */}
+      {/* Header */}
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? 'bg-[#f7f3ed]/80 backdrop-blur-md' : ''
@@ -61,7 +68,7 @@ const Hero = () => {
                        focus:outline-none focus:ring-2 focus:ring-[#1E2359] focus:ring-opacity-50"
           >
             <span>Agendar ahora</span>
-            <img src={ArrowRight} alt="Arrow Right" className="w-3 h-3 md:w-4 md:h-4" />
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
           </button>
 
           <motion.button
@@ -79,7 +86,7 @@ const Hero = () => {
         </div>
       </motion.header>
 
-      {/* Menú de pantalla completa */}
+      {/* Full-screen menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -106,7 +113,7 @@ const Hero = () => {
         )}
       </AnimatePresence>
 
-      {/* Sección principal */}
+      {/* Main section */}
       <motion.main
         className="flex flex-col items-center justify-center min-h-screen text-center px-4 pt-20"
         initial={{ opacity: 0 }}
@@ -133,21 +140,21 @@ const Hero = () => {
 
         <motion.button
           onClick={scrollToServices}
-          className="bg-[#1E2359] text-white px-6 py-3 md:px-8 md:py-4 rounded-full 
+          className="border-[#1E2359] text-[#1E2359] bg-transparent px-6 py-3 md:px-8 md:py-4 rounded-full 
                      font-semibold text-sm md:text-lg transition-all duration-300 
-                     hover:bg-[#2a307a] hover:shadow-lg 
+                     hover:bg-[#2a307a] hover:text-white hover:shadow-lg 
                      focus:outline-none focus:ring-2 focus:ring-[#1E2359] focus:ring-opacity-50
-                     mt-6 md:mt-10"
+                     mt-6 md:mt-10 flex items-center space-x-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ scale: 1.05, backgroundColor: "#2a307a" }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Ver nuestros servicios
+          <span>Explorar</span>
+          <ArrowDown className="w-4 h-4" />
         </motion.button>
       </motion.main>
-
       {/* Sección de servicios */}
       <section ref={servicesRef} className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-8 md:px-16 py-20">
         <div className="max-w-[1318px] mx-auto">
@@ -213,52 +220,7 @@ const Hero = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Sección: Nuestro servicio All-in-one (Rediseñada) */}
-      <section className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-4 sm:px-8 md:px-16 py-20 overflow-hidden">
-        <div className="max-w-[1318px] mx-auto relative">
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 sm:mb-8 text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Nuestro servicio All-in-one
-          </motion.h2>
-          <motion.p
-            className="text-base sm:text-lg md:text-xl text-center mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Conectamos nuestros servicios principales para ofrecer una solución integral que llevará tu negocio al siguiente nivel.
-          </motion.p>
-
-          <div className="relative w-full max-w-3xl mx-auto">
-            <AllInOneServiceFlow />
-          </div>
-
-          <motion.div
-            className="mt-8 sm:mt-16 text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-4">¿Cómo funciona?</h3>
-            <p className="text-base sm:text-lg mb-6 sm:mb-8">
-              Nuestro enfoque integral combina estos servicios para crear una estrategia personalizada que impulsa el crecimiento de tu negocio:
-            </p>
-            <ol className="text-left list-decimal list-inside space-y-2 sm:space-y-4">
-              <li className="text-sm sm:text-base">Optimizamos tus procesos internos con nuestro Sistema de Gestión.</li>
-              <li className="text-sm sm:text-base">Creamos una presencia digital atractiva con nuestro servicio de Web y App.</li>
-              <li className="text-sm sm:text-base">Implementamos una plataforma de Ecommerce para maximizar tus ventas en línea.</li>
-              <li className="text-sm sm:text-base">Entregamos un proyecto listo para impulsar tu negocio al siguiente nivel.</li>
-            </ol>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Nueva sección: Ya funcionan con softnova */}
+      {/* Projects section */}
       <section className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-8 md:px-16 py-20">
         <div className="max-w-[1318px] mx-auto">
           <motion.h2
@@ -294,8 +256,56 @@ const Hero = () => {
           </motion.div>
         </div>
       </section>
+      {/* Nueva Sección: Herramientas gratuitas para desarrolladores */}
+      {/* Nueva Sección: Herramientas gratuitas para desarrolladores */}
+      <section className="py-20 px-4 bg-[#f7f3ed] flex">
+        {/* Texto y logos en la izquierda */}
+        <div className="w-1/3 pr-10">
+          <h2 className="text-4xl font-bold mb-6">Herramientas gratuitas para desarrolladores</h2>
+          <div className="flex flex-wrap space-x-4 mb-8">
+            <img src={mercadoLibre} alt="Mercado Libre" className="w-12 h-12" />
+            <img src={wordpress} alt="WordPress" className="w-12 h-12" />
+            <img src={tiendaNube} alt="Tienda Nube" className="w-12 h-12" />
+            <img src={phpIcon} alt="PHP" className="w-12 h-12" />
+            <img src={jsIcon} alt="JavaScript" className="w-12 h-12" />
+            <img src={githubIcon} alt="GitHub" className="w-12 h-12" />
+          </div>
+          {/* Pasadores debajo del texto */}
+          <div className="flex space-x-4">
+            <button className="w-10 h-10 bg-blue-600 text-white rounded-full">←</button>
+            <button className="w-10 h-10 bg-blue-600 text-white rounded-full">→</button>
+          </div>
+        </div>
 
-      {/* Modal para detalles del proyecto */}
+        {/* Tarjetas en la derecha */}
+        <div className="w-2/3 flex overflow-x-auto space-x-6">
+          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
+            <img src={phpIcon} alt="PHP" className="w-20 h-20 mb-4" />
+            <h3 className="text-2xl font-bold mb-4">Plugin PHP</h3>
+            <p className="mb-4">Este plugin facilita la integración con APIs modernas y mejora la eficiencia en el backend.</p>
+            <a href="https://github.com/plugin-php" className="text-blue-600">Ver en GitHub</a>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
+            <img src={jsIcon} alt="JavaScript" className="w-20 h-20 mb-4" />
+            <h3 className="text-2xl font-bold mb-4">Biblioteca JS</h3>
+            <p className="mb-4">Una herramienta completa para manejar DOM y mejorar la experiencia de usuario.</p>
+            <a href="https://github.com/lib-js" className="text-blue-600">Ver en GitHub</a>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
+            <img src={wordpress} alt="WordPress" className="w-20 h-20 mb-4" />
+            <h3 className="text-2xl font-bold mb-4">Extensión WordPress</h3>
+            <p className="mb-4">Mejora tu sitio WordPress con esta extensión que optimiza SEO y rendimiento.</p>
+            <a href="https://github.com/ext-wordpress" className="text-blue-600">Ver en GitHub</a>
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
+            <img src={githubIcon} alt="GitHub" className="w-20 h-20 mb-4" />
+            <h3 className="text-2xl font-bold mb-4">Integración GitHub</h3>
+            <p className="mb-4">Automatiza tus flujos de trabajo con esta integración avanzada para GitHub Actions.</p>
+            <a href="https://github.com/integration-github" className="text-blue-600">Ver en GitHub</a>
+          </div>
+        </div>
+      </section>
+      {/* Project details modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -336,7 +346,6 @@ const Hero = () => {
     </div>
   );
 };
-
 const ServiceCard = ({ icon, title, items }) => (
   <motion.div
     className="border-2 border-[#1E2359] p-8 rounded-lg flex flex-col items-center"
@@ -352,54 +361,6 @@ const ServiceCard = ({ icon, title, items }) => (
     </ul>
   </motion.div>
 );
-
-const AllInOneServiceFlow = () => {
-  const services = [
-    { icon: NetworkIcon, title: "Sistema de Gestión", description: "Automatiza y optimiza tus procesos internos" },
-    { icon: ScreenAppIcon, title: "Web y App", description: "Crea una presencia digital impactante" },
-    { icon: CartIcon, title: "Ecommerce", description: "Vende tus productos en línea de manera eficiente" },
-    { icon: CheckIcon, title: "Proyecto Listo", description: "Tu negocio optimizado y listo para crecer" },
-  ];
-
-  return (
-    <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-4">
-      {services.map((service, index) => (
-        <React.Fragment key={index}>
-          <ServiceNode service={service} />
-          {index < services.length - 1 && <Arrow />}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-};
-
-const ServiceNode = ({ service }) => (
-  <motion.div
-    className="bg-white border-2 border-[#1E2359] p-4 rounded-lg flex flex-col items-center text-center w-48"
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5 }}
-    whileHover={{ scale: 1.05 }}
-  >
-    <img src={service.icon} alt={service.title} className="w-12 h-12 mb-2" />
-    <h3 className="text-lg font-semibold mb-1">{service.title}</h3>
-    <p className="text-xs">{service.description}</p>
-  </motion.div>
-);
-
-const Arrow = () => (
-  <motion.div
-    className="hidden md:block"
-    initial={{ opacity: 0, width: 0 }}
-    animate={{ opacity: 1, width: "2rem" }}
-    transition={{ duration: 0.5 }}
-  >
-    <svg className="w-8 h-8 text-[#1E2359]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-    </svg>
-  </motion.div>
-);
-
 const ProjectCard = ({ project, onClick }) => (
   <motion.div
     className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer"
@@ -442,3 +403,6 @@ const projects = [
 ];
 
 export default Hero;
+  
+
+
