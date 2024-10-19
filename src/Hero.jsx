@@ -1,408 +1,351 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import logo from './assets/Logopng.png';
-import { ArrowDown, ArrowRight } from 'lucide-react';
-import MenuIcon from './assets/menu-duo-lg-svgrepo-com.svg';
-import CloseIcon from './assets/basic-cancel-close-cross-delete-exit-svgrepo-com.svg';
-import CartIcon from './assets/cart.svg';
-import MetaIcon from './assets/meta.svg';
-import ScreenAppIcon from './assets/screenapp.svg';
-import NetworkIcon from './assets/network.svg';
-import SEOIcon from './assets/seo.svg';
-import HostingIcon from './assets/hosting.svg';
-import mercadoLibre from './assets/mercadolibre.svg';
-import wordpress from './assets/wordpress.svg';
-import tiendaNube from './assets/tiendanube.svg';
-import phpIcon from './assets/php.svg';
-import jsIcon from './assets/javascript.svg';
-import githubIcon from './assets/github.svg';
+import { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
+import ScreenAppIcon from './assets/screenapp.svg'
+import NetworkIcon from './assets/network.svg'
+import CartIcon from './assets/cart.svg'
+import MetaIcon from './assets/meta.svg'
+import ProjectMockup from './assets/Proyecto1.png'
+import ProjectMockup2 from './assets/Proyecto2.png'
+import ProjectMockup3 from './assets/Proyecto3.png'
+import ProjectMockup4 from './assets/Proyecto4.png'
 
-const Hero = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const servicesRef = useRef(null);
-  const [selectedProject, setSelectedProject] = useState(null);
+export default function SoftnovaWebsite() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrollY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }, [menuOpen])
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const offset = 80
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = element.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
 
-  const scrollToServices = () => {
-    servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+    setMenuOpen(false)
+  }
+
+  const services = [
+    { 
+      icon: NetworkIcon, 
+      title: "Sistema de Gestión Empresarial", 
+      desc: "Revoluciona la eficiencia de tu empresa con nuestro sistema integral. Automatiza procesos, gestiona inventarios en tiempo real, y optimiza recursos con integraciones inteligentes que reducen costos operativos hasta un 40%."
+    },
+    { 
+      icon: ScreenAppIcon, 
+      title: "Diseño y Desarrollo de Web y Apps", 
+      desc: "Transformamos tu visión en soluciones digitales innovadoras mediante el desarrollo web y movil. Caracterizadas por su diseño atractivo, rendimiento, seguridad y experiencia de usuario."
+    },
+    { 
+      icon: CartIcon, 
+      title: "E-commerce", 
+      desc: "Potencia tus ventas online con nuestra plataforma e-commerce personalizada. Desde gestión avanzada de inventario hasta integración con múltiples pasarelas de pago, creamos tu tienda virtual completa."
+    },
+    { 
+      icon: MetaIcon, 
+      title: "Marketing Digital Estratégico", 
+      desc: "Impulsa tu presencia digital con estrategias data-driven. Creamos y optimizamos tus campañas en Meta y Google con análisis avanzado de audiencias y metricas para maximizar tu retorno."
+    }
+  ]
+
+  const projects = [
+    {
+      title: "Tuadrop",
+      description: "texto.",
+      image: ProjectMockup4,
+      link: "www.tua.ar",
+      tag: "Dropshipping App Movil - Version Web"
+    },
+    {
+      title: "Vinos Wine Bars (EEUU)",
+      description: "texto.",
+      image: ProjectMockup2,
+      link: "www.tua.ar",
+      tag: "Diseño y Desarrollo Web"
+    },
+    {
+      title: "TuaWeb",
+      description: "texto.",
+      image: ProjectMockup,
+      link: "www.tua.ar",
+      tag: "Diseño y Desarrollo Web"
+    },
+    {
+      title: "Voglio",
+      description: "texto.",
+      image: ProjectMockup3,
+      link: "www.vogliofirmat.com",
+      tag: "E-Commerce"
+    },
+  ]
 
   return (
-    <div className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway relative">
-      {/* Header */}
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-[#f7f3ed]/80 backdrop-blur-md' : ''
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex justify-between items-center w-full max-w-[1318px] py-5 px-4 md:py-10 mx-auto relative">
-          <motion.img
-            src={logo}
-            alt="Logo"
-            className="h-8 sm:h-10 md:h-16 lg:h-20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-
-          <button
-            className="absolute left-1/2 transform -translate-x-1/2 border-2 border-[#1E2359] text-[#1E2359] bg-transparent px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-2 rounded-full 
-                       font-semibold text-xs sm:text-sm md:text-lg transition-all duration-300 
-                       hover:bg-[#1E2359] hover:text-white hover:shadow-lg flex items-center space-x-2
-                       focus:outline-none focus:ring-2 focus:ring-[#1E2359] focus:ring-opacity-50"
-          >
-            <span>Agendar ahora</span>
-            <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
-          </button>
-
-          <motion.button
-            onClick={toggleMenu}
-            className="z-20"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <img
-              src={menuOpen ? CloseIcon : MenuIcon}
-              alt="Menu Icon"
-              className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+    <div className="flex flex-col min-h-screen bg-[#f7f3ed] text-[#1E2359] w-full font-['Helvetica Neue']">
+      <header className="sticky top-0 z-50 w-full border-b border-[#1E2359]/10 bg-[#f7f3ed]/90 backdrop-blur-md transition-all duration-300" 
+              style={{ height: `${Math.max(64, 96 - scrollY * 0.5)}px` }}>
+        <div className="container mx-auto px-4 md:px-6 h-full flex items-center justify-between">
+          <a className="flex items-center justify-center" 
+             href="#inicio" 
+             onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logopng-tSindmcysb1dsJLuDjVxd5R5oUb05h.png" 
+              alt="Softnova Logo" 
+              className="h-12 w-auto transition-all duration-300" 
+              style={{ height: `${Math.max(32, 48 - scrollY * 0.2)}px` }} 
             />
-          </motion.button>
-        </div>
-      </motion.header>
-
-      {/* Full-screen menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 bg-[#f7f3ed] text-[#1E2359] flex flex-col items-center justify-center z-40"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-          >
-            {['Servicios', 'Proyectos', 'Contacto'].map((item, index) => (
-              <motion.h2
-                key={item}
-                className="text-2xl sm:text-3xl md:text-4xl cursor-pointer mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                whileHover={{ scale: 1.1 }}
+          </a>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {["Inicio", "Servicios", "Proyectos", "Cómo trabajamos", "Contáctanos"].map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase().replace(/ /g, '-')}`}
+                onClick={(e) => { e.preventDefault(); scrollToSection(item.toLowerCase().replace(/ /g, '-')); }}
+                className="text-lg font-medium hover:text-[#1E2359]/70 transition-colors relative group"
               >
                 {item}
-              </motion.h2>
+                <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-[#1E2359] transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100"></span>
+              </a>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </nav>
+          
+          <button 
+            className="hidden md:inline-flex bg-[#1E2359] text-[#f7f3ed] px-6 py-3 shadow-lg hover:translate-y-[-2px] transition-all duration-300 ease-out"
+            onClick={() => scrollToSection('contáctanos')}
+          >
+            Agendar una reunión
+          </button>
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-[#1E2359] z-50" 
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </header>
 
-      {/* Main section */}
-      <motion.main
-        className="flex flex-col items-center justify-center min-h-screen text-center px-4 pt-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 bg-[#f7f3ed] z-40 transform transition-transform duration-300 ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        } md:hidden flex flex-col`}
       >
-        <motion.h1
-          className="font-coolvetica text-[5rem] sm:text-[7rem] md:text-[8rem] lg:text-[239.435px] leading-none text-[#1E2359] mb-4"
-          initial={{ y: -50 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          SOFTNOVA
-        </motion.h1>
-
-        <motion.h2
-          className="font-raleway text-[1.25rem] sm:text-[1.75rem] md:text-[2rem] lg:text-[45.487px] leading-normal text-[#1E2359]"
-          initial={{ y: 50 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          Soluciones empresariales integrales
-        </motion.h2>
-
-        <motion.button
-          onClick={scrollToServices}
-          className="border-[#1E2359] text-[#1E2359] bg-transparent px-6 py-3 md:px-8 md:py-4 rounded-full 
-                     font-semibold text-sm md:text-lg transition-all duration-300 
-                     hover:bg-[#2a307a] hover:text-white hover:shadow-lg 
-                     focus:outline-none focus:ring-2 focus:ring-[#1E2359] focus:ring-opacity-50
-                     mt-6 md:mt-10 flex items-center space-x-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span>Explorar</span>
-          <ArrowDown className="w-4 h-4" />
-        </motion.button>
-      </motion.main>
-      {/* Sección de servicios */}
-      <section ref={servicesRef} className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-8 md:px-16 py-20">
-        <div className="max-w-[1318px] mx-auto">
-          <motion.h2
-            className="text-4xl md:text-5xl font-semibold mb-2 text-left"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Ver nuestros servicios
-          </motion.h2>
-          <motion.p
-            className="text-lg md:text-xl text-left mb-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Descubre cómo nuestros servicios pueden ayudarte a optimizar y mejorar tu negocio.
-          </motion.p>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <ServiceCard
-              icon={NetworkIcon}
-              title="Sistema de Gestión"
-              items={[
-                "Automatización de procesos",
-                "Optimización de recursos",
-                "Gestión de equipos"
-              ]}
-            />
-            <ServiceCard
-              icon={ScreenAppIcon}
-              title="Desarrollo y diseño de Web y Apps"
-              items={[
-                "Desarrollo full-stack",
-                "Diseño responsive",
-                "Experiencia de usuario"
-              ]}
-            />
-            <ServiceCard
-              icon={CartIcon}
-              title="Ecommerce"
-              items={[
-                "Carrito de compras",
-                "Pasarelas de pago",
-                "Gestión de inventarios"
-              ]}
-            />
-            <ServiceCard
-              icon={MetaIcon}
-              title="Publicidad en Meta y Google Ads"
-              items={[
-                "Campañas en redes sociales",
-                "Optimización SEO",
-                "Análisis de métricas"
-              ]}
-            />
-          </motion.div>
-        </div>
-      </section>
-      {/* Projects section */}
-      <section className="min-h-screen bg-[#f7f3ed] text-[#1E2359] font-raleway px-8 md:px-16 py-20">
-        <div className="max-w-[1318px] mx-auto">
-          <motion.h2
-            className="text-4xl md:text-5xl font-semibold mb-2 text-center"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Ya funcionan con softnova
-          </motion.h2>
-          <motion.p
-            className="text-lg md:text-xl text-center mb-12"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Descubre algunos de los proyectos que hemos completado y cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos.
-          </motion.p>
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={index}
-                project={project}
-                onClick={() => setSelectedProject(project)}
-              />
-            ))}
-          </motion.div>
-        </div>
-      </section>
-      {/* Nueva Sección: Herramientas gratuitas para desarrolladores */}
-      {/* Nueva Sección: Herramientas gratuitas para desarrolladores */}
-      <section className="py-20 px-4 bg-[#f7f3ed] flex">
-        {/* Texto y logos en la izquierda */}
-        <div className="w-1/3 pr-10">
-          <h2 className="text-4xl font-bold mb-6">Herramientas gratuitas para desarrolladores</h2>
-          <div className="flex flex-wrap space-x-4 mb-8">
-            <img src={mercadoLibre} alt="Mercado Libre" className="w-12 h-12" />
-            <img src={wordpress} alt="WordPress" className="w-12 h-12" />
-            <img src={tiendaNube} alt="Tienda Nube" className="w-12 h-12" />
-            <img src={phpIcon} alt="PHP" className="w-12 h-12" />
-            <img src={jsIcon} alt="JavaScript" className="w-12 h-12" />
-            <img src={githubIcon} alt="GitHub" className="w-12 h-12" />
-          </div>
-          {/* Pasadores debajo del texto */}
-          <div className="flex space-x-4">
-            <button className="w-10 h-10 bg-blue-600 text-white rounded-full">←</button>
-            <button className="w-10 h-10 bg-blue-600 text-white rounded-full">→</button>
-          </div>
-        </div>
-
-        {/* Tarjetas en la derecha */}
-        <div className="w-2/3 flex overflow-x-auto space-x-6">
-          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
-            <img src={phpIcon} alt="PHP" className="w-20 h-20 mb-4" />
-            <h3 className="text-2xl font-bold mb-4">Plugin PHP</h3>
-            <p className="mb-4">Este plugin facilita la integración con APIs modernas y mejora la eficiencia en el backend.</p>
-            <a href="https://github.com/plugin-php" className="text-blue-600">Ver en GitHub</a>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
-            <img src={jsIcon} alt="JavaScript" className="w-20 h-20 mb-4" />
-            <h3 className="text-2xl font-bold mb-4">Biblioteca JS</h3>
-            <p className="mb-4">Una herramienta completa para manejar DOM y mejorar la experiencia de usuario.</p>
-            <a href="https://github.com/lib-js" className="text-blue-600">Ver en GitHub</a>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
-            <img src={wordpress} alt="WordPress" className="w-20 h-20 mb-4" />
-            <h3 className="text-2xl font-bold mb-4">Extensión WordPress</h3>
-            <p className="mb-4">Mejora tu sitio WordPress con esta extensión que optimiza SEO y rendimiento.</p>
-            <a href="https://github.com/ext-wordpress" className="text-blue-600">Ver en GitHub</a>
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-6 w-80 flex-shrink-0">
-            <img src={githubIcon} alt="GitHub" className="w-20 h-20 mb-4" />
-            <h3 className="text-2xl font-bold mb-4">Integración GitHub</h3>
-            <p className="mb-4">Automatiza tus flujos de trabajo con esta integración avanzada para GitHub Actions.</p>
-            <a href="https://github.com/integration-github" className="text-blue-600">Ver en GitHub</a>
-          </div>
-        </div>
-      </section>
-      {/* Project details modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-white rounded-lg p-8 max-w-2xl w-full"
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
+        <div className="flex flex-col items-center justify-center h-full space-y-8 px-4">
+          {["Inicio", "Servicios", "Proyectos", "Cómo trabajamos", "Contáctanos"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase().replace(/ /g, '-')}`}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                scrollToSection(item.toLowerCase().replace(/ /g, '-')); 
+              }}
+              className="text-xl font-medium hover:text-[#1E2359]/70 transition-colors px-4 py-2 w-full text-center"
             >
-              <h3 className="text-2xl font-bold mb-4">{selectedProject.title}</h3>
-              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-64 object-cover rounded-lg mb-4" />
-              <p className="text-lg mb-4">{selectedProject.description}</p>
-              <div className="flex justify-between items-center">
-                <a
-                  href={selectedProject.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#1E2359] text-white px-4 py-2 rounded-full font-semibold hover:bg-[#2a307a] transition-colors"
+              {item}
+            </a>
+          ))}
+          <button 
+            className="bg-[#1E2359] text-[#f7f3ed] px-6 py-3 mt-4 shadow-lg hover:translate-y-[-2px] transition-all duration-300 ease-out w-full max-w-xs"
+            onClick={() => { 
+              scrollToSection('contáctanos'); 
+              setMenuOpen(false); 
+            }}
+          >
+            Agendar una reunión
+          </button>
+        </div>
+      </div>
+
+      <main className="flex-1">
+        <section id="inicio" className="w-full py-24 md:py-32 lg:py-48 relative overflow-hidden">
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2 max-w-3xl mx-auto">
+                <h1 className="text-4xl font-normal sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-[#1E2359] to-[#1E2359]/70 leading-tight">
+                  Convertimos tus ideas en software innovador
+                </h1>
+                <p className="mx-auto max-w-[700px] text-[#1E2359]/70 md:text-xl lg:text-2xl">
+                  Desde la gestión hasta la expansión digital, creamos soluciones que impulsan tu éxito.
+                </p>
+              </div>
+              <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto">
+                <button 
+                  onClick={() => scrollToSection('contáctanos')}
+                  className="w-full md:w-auto bg-[#1E2359] text-[#f7f3ed] text-lg py-4 px-8 shadow-lg hover:translate-y-[-2px] transition-all duration-300 ease-out"
                 >
-                  Ver proyecto
-                </a>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="text-[#1E2359] font-semibold hover:underline"
+                  Agendar una reunión
+                </button>
+                <button 
+                  onClick={() => scrollToSection('proyectos')}
+                  className="w-full md:w-auto border-2 border-[#1E2359] text-[#1E2359] bg-[#f7f3ed] hover:bg-[#1E2359] hover:text-[#f7f3ed] text-lg py-4 px-8 transition-all duration-300 ease-out hover:translate-y-[-2px]"
                 >
-                  Cerrar
+                  Explorar
                 </button>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-const ServiceCard = ({ icon, title, items }) => (
-  <motion.div
-    className="border-2 border-[#1E2359] p-8 rounded-lg flex flex-col items-center"
-    whileHover={{ scale: 1.05 }}
-    transition={{ duration: 0.3 }}
-  >
-    <img src={icon} alt={title} className="w-20 h-20 mb-6" />
-    <h3 className="text-3xl font-semibold mb-4">{title}</h3>
-    <ul className="text-lg space-y-2">
-      {items.map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
-    </ul>
-  </motion.div>
-);
-const ProjectCard = ({ project, onClick }) => (
-  <motion.div
-    className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer"
-    whileHover={{ scale: 1.05 }}
-    transition={{ duration: 0.3 }}
-    onClick={onClick}
-  >
-    <div className="relative h-48">
-      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-        <p className="text-white text-lg font-semibold">Ver detalles</p>
-      </div>
-    </div>
-    <div className="p-4">
-      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-      <p className="text-sm line-clamp-2">{project.description}</p>
-    </div>
-  </motion.div>
-);
+            </div>
+          </div>
+        </section>
 
-const projects = [
-  {
-    title: "Proyecto 1",
-    description: "Descripción detallada del proyecto 1. Aquí puedes explicar los objetivos, desafíos y resultados del proyecto.",
-    image: "/placeholder.svg?height=300&width=400",
-    link: "https://proyecto1.com"
-  },
-  {
-    title: "Proyecto 2",
-    description: "Descripción detallada del proyecto 2. Destaca las características únicas y el impacto que tuvo en el negocio del cliente.",
-    image: "/placeholder.svg?height=300&width=400",
-    link: "https://proyecto2.com"
-  },
-  {
-    title: "Proyecto 3",
-    description: "Descripción detallada del proyecto 3. Menciona las tecnologías utilizadas y cómo se adaptaron a las necesidades específicas del cliente.",
-    image: "/placeholder.svg?height=300&width=400",
-    link: "https://proyecto3.com"
-  },
-];
+        <section id="servicios" className="w-full py-24 md:py-32 lg:py-48 relative overflow-hidden">
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-[#1E2359] to-[#1E2359]/70 leading-tight">
+                Nuestros Servicios
+              </h2>
+              <p className="mt-4 text-xl text-[#1E2359]/70 max-w-3xl mx-auto">
+                Soluciones tecnológicas a medida para llevar tu negocio al siguiente nivel
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {services.map((service) => (
+                <div key={service.title} className="bg-white/50 backdrop-blur-sm hover:bg-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl p-8 border border-[#1E2359]/10">
+                  <div className="w-24 h-24 rounded-lg bg-[#1E2359]/5 flex items-center justify-center mb-6 mx-auto">
+                    <img src={service.icon} className="w-16 h-16" alt={service.title} />
+                  </div>
+                  <h3 className="text-[#1E2359] text-2xl font-semibold mb-4 text-center leading-tight">{service.title}</h3>
+                  <p className="text-[#1E2359]/70 text-lg text-center leading-relaxed">{service.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-export default Hero;
+        <section id="proyectos" className="w-full py-24 md:py-32 lg:py-48 bg-[#f7f3ed]">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-[#1E2359] to-[#1E2359]/70 leading-tight">
+                Casos de Éxito
+              </h2>
+              <p className="mt-4 text-xl text-[#1E2359]/70 max-w-3xl mx-auto">
+                Descubre cómo empresas ya potencian su negocio con Softnova
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {projects.map((project, index) => (
+                <div 
+                  key={project.title} 
+                  className={`group relative bg-white/50 backdrop-blur-sm
+                    border border-[#1E2359]/10 rounded-lg overflow-hidden 
+                    ${index % 3 === 0 ? 'lg:col-span-2' : ''}`}
+                >
+                  <div className="p-8">
+                    <span className="inline-block px-4 py-1.5 mb-6 rounded-full bg-[#1E2359]/5 text-[#1E2359] text-sm font-medium">
+                      {project.tag}
+                    </span>
+                    <div className="flex flex-col lg:flex-row gap-8 items-center">
+                      <div className="flex-1 space-y-4">
+                        <h3 className="text-[#1E2359] text-2xl font-semibold leading-tight">
+                          {project.title}
+                        </h3>
+                        <p className="text-[#1E2359]/70 text-lg leading-relaxed">
+                          {project.description}
+                        </p>
+                        <a 
+                          href={project.link}
+                          className="inline-block bg-[#1E2359] text-[#f7f3ed] px-6 py-3 rounded-lg font-medium 
+                            hover:translate-y-[-2px] transition-all duration-300"
+                        >
+                          Ver proyecto
+                        </a>
+                      </div>
+                      <div className="w-full lg:w-1/2 aspect-[4/3] rounded-lg overflow-hidden">
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+         <section id="cómo-trabajamos" className="w-full py-24 md:py-32 lg:py-48 relative overflow-hidden">
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-[#1E2359] to-[#1E2359]/70 leading-tight">
+                Cómo Trabajamos
+              </h2>
+              <p className="mt-4 text-xl text-[#1E2359]/70 max-w-3xl mx-auto">
+                Un proceso simple y efectivo para convertir tu visión en realidad
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Consulta Estratégica",
+                  desc: "Comenzamos con una llamada donde escuchamos tus necesidades, analizamos tu empresa y definimos juntos el alcance, presupuesto y tiempo de implementación ideal para tu proyecto."
+                },
+                {
+                  title: "Diseño y Desarrollo",
+                  desc: "Nuestro equipo experto transforma tu visión en realidad, con un proceso iterativo de diseño, desarrollo e implementación, manteniendo revisiones constantes para asegurar tu satisfacción."
+                },
+                {
+                  title: "Lanzamiento y Soporte",
+                  desc: "Implementamos tu solución con capacitación completa para tu equipo, asegurando una transición suave. Además, proporcionamos soporte continuo para maximizar el valor de tu inversión."
+                }
+              ].map((step) => (
+                <div key={step.title} className="bg-white/50 backdrop-blur-sm hover:bg-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl p-8 border border-[#1E2359]/10">
+                  <h3 className="text-[#1E2359] text-2xl font-semibold mb-4">{step.title}</h3>
+                  <p className="text-[#1E2359]/70 text-lg">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
   
-
-
+          <section id="contáctanos" className="w-full py-24 md:py-32 lg:py-48 bg-[#1E2359] text-[#f7f3ed] relative overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#f7f3ed] to-[#f7f3ed]/70 leading-tight">
+                Impulsa tu Negocio al Siguiente Nivel
+              </h2>
+              <p className="mx-auto max-w-[700px] text-[#f7f3ed]/70 md:text-xl lg:text-2xl mb-12">
+                ¿Listo para optimizar y automatizar tus procesos empresariales? Agenda una consulta gratuita y descubre cómo nuestras soluciones tecnológicas pueden transformar tu negocio.
+              </p>
+              <button className="bg-[#f7f3ed] text-[#1E2359] text-lg py-6 px-8 shadow-lg hover:translate-y-[-2px] transition-all duration-300 ease-out">
+                Agendar una consulta estratégica gratuita
+              </button>
+            </div>
+          </section>
+        </main>
+        <footer className="w-full py-8 bg-[#f7f3ed] text-[#1E2359] border-t border-[#1E2359]/10">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+              <div className="flex flex-col items-center gap-4 px-8 md:items-start md:gap-2 md:px-0">
+                <a className="flex items-center justify-center" href="#">
+                  <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logopng-tSindmcysb1dsJLuDjVxd5R5oUb05h.png" alt="Softnova Logo" className="h-10 w-auto" />
+                </a>
+                <p className="text-center text-sm md:text-left text-[#1E2359]/70">© 2024 Softnova. Todos los derechos reservados.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    )
+  }
