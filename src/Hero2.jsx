@@ -359,3 +359,6 @@ export default function SoftnovaWebsite() {
     </div>
   );
 }
+
+
+https://freight-template.webflow.io/
