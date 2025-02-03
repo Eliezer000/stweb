@@ -3,12 +3,6 @@ import PropTypes from 'prop-types'
 import { Menu, X, ChevronRight, Sparkles, Instagram, Mail } from 'lucide-react'
 import { motion, useInView, AnimatePresence, useTransform, useScroll } from 'framer-motion'
 import { ServiceItem } from './ServiceItem'
-
-// Importa tus imágenes SVG y PNG aquí
-import ScreenAppIcon from './assets/screenapp.svg'
-import NetworkIcon from './assets/network.svg'
-import CartIcon from './assets/cart.svg'
-import MetaIcon from './assets/meta.svg'
 import ProjectMockup from './assets/Proyecto1.png'
 import ProjectMockup2 from './assets/Proyecto2.png'
 import ProjectMockup3 from './assets/Proyecto3.png'
@@ -20,24 +14,23 @@ function Header({ scrollToSection, menuOpen, setMenuOpen }) {
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(25, 37, 68, 0)", "rgba(25, 37, 68, 0.9)"]
-  )
-  const backdropBlur = useTransform(
-    scrollY,
-    [0, 100],
-    ["blur(0px)", "blur(12px)"]
+    ["rgba(25, 37, 68, 0.8)", "rgba(25, 37, 68, 0.9)"]
   )
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/10"
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4"
       style={{
-        backgroundColor,
-        backdropFilter: backdropBlur,
+        backdropFilter: "blur(12px)",
       }}
     >
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-20">
+      <div className="relative w-full max-w-7xl mx-auto">
+        <motion.div
+          className="flex items-center justify-between h-16 px-6 rounded-full border border-white/10"
+          style={{
+            backgroundColor
+          }}
+        >
           <a 
             href="#inicio"
             onClick={(e) => { 
@@ -46,10 +39,10 @@ function Header({ scrollToSection, menuOpen, setMenuOpen }) {
             }}
             className="relative z-50"
           >
-            <img 
+            <img
               src={Logo}
-              alt="Softnova Logo" 
-              className="h-12 w-auto transition-all duration-300"
+              alt="Softnova Logo"
+              className="h-14 w-auto"
             />
           </a>
 
@@ -70,10 +63,10 @@ function Header({ scrollToSection, menuOpen, setMenuOpen }) {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:block">
             <button
               onClick={() => scrollToSection('contáctanos')}
-              className="px-5 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-medium rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105"
+              className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium hover:bg-gray-100 transition-colors duration-200"
             >
               Agendar una reunión
             </button>
@@ -86,7 +79,7 @@ function Header({ scrollToSection, menuOpen, setMenuOpen }) {
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-        </div>
+        </motion.div>
       </div>
     </motion.header>
   )
@@ -207,12 +200,9 @@ export default function SoftnovaWebsite() {
     {
       number: "01",
       title: "Sistema de Gestión Empresarial",
-      description: "Revoluciona la eficiencia de tu empresa con nuestro sistema integral.",
+      description: "Lleva tu negocio al siguiente nivel con un sistema que trabaja para ti.",
       details: [
-        "Imagina tu empresa operando con la precisión de un reloj suizo. Nuestro sistema de gestión empresarial hace exactamente eso, transformando el caos en armonía operativa.",
-        "Olvídate de las hojas de cálculo dispersas y los procesos manuales. Te ofrecemos una solución que centraliza toda tu operación en un solo lugar, accesible desde cualquier dispositivo.",
-        "Nuestros clientes han experimentado una reducción del 40% en sus costos operativos y un aumento del 60% en la productividad de sus equipos.",
-        "La automatización inteligente no solo ahorra tiempo, sino que también elimina errores costosos. Cada proceso está diseñado para maximizar la eficiencia y minimizar el desperdicio."
+        "Gestiona tu empresa de manera eficiente con un sistema que lo hace todo: stock, ventas, contabilidad, facturación e integraciones con otras plataformas. Automatiza procesos, toma decisiones basadas en datos y mejora la rentabilidad de tu negocio. Simplifica la administración y enfócate en lo que realmente importa: hacer crecer tu empresa."
       ]
     },
     {
@@ -530,19 +520,19 @@ export default function SoftnovaWebsite() {
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-900 leading-tight">
                       Impulsa tu Negocio al Siguiente Nivel
                     </h2>
-                    <p className="text-xl text-gray-300">
+                    <p className="text-xl text-gray-300 mb-20">
                       ¿Listo para optimizar y automatizar tus procesos empresariales?
                     </p>
                   </div>
 
-                  <button className="w-full sm:w-auto bg-white text-gray-900 text-lg py-4 px-8 rounded-lg shadow-lg hover:translate-y-[-2px] transition-all duration-300 ease-out flex items-center justify-center gap-2">
+                  <a href="https://api.whatsapp.com/send?phone=543465662401" target="_blank"><button className="w-full sm:w-auto bg-white text-gray-900 text-lg py-4 px-8 rounded-lg shadow-lg hover:translate-y-[-2px] transition-all duration-300 ease-out flex items-center justify-center gap-2 mt-8">
                     <Mail className="w-5 h-5" />
                     Agendar una consulta estratégica gratuita
-                  </button>
+                  </button> </a>
 
                   <div className="pt-8 border-t border-white/10">
                     <p className="text-gray-300 mb-4">Síguenos en Instagram</p>
-                    <a href="#" className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
+                    <a href="http://www.instagram.com/softnova.ar" className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
                       <Instagram className="w-6 h-6" />
                       @softnova.ar
                     </a>
@@ -579,8 +569,8 @@ export default function SoftnovaWebsite() {
                     <p className="text-gray-300 mb-4">
                       Estamos aquí para responder a todas tus preguntas y ayudarte a impulsar tu negocio.
                     </p>
-                    <a href="mailto:info@softnova.com" className="text-white hover:text-blue-400 transition-colors">
-                      info@softnova.com
+                    <a href="mailto:softnovaar@gmail.com" className="text-white hover:text-blue-400 transition-colors">
+                      softnovar@gmail.com
                     </a>
                   </div>
                 </div>
@@ -598,7 +588,10 @@ export default function SoftnovaWebsite() {
                 <img src={Logo} alt="Softnova Logo" className="h-16 w-auto" />
               </a>
               <p className="text-center text-sm md:text-left text-gray-400">
-                © 2024 Softnova. Todos los derechos reservados.
+                © 2025 Softnova. Todos los derechos reservados.
+              </p>
+              <p className="text-center text-sm md:text-left text-gray-400">
+                Luciano Medina, Eliezer Perez.
               </p>
             </div>
           </div>
@@ -607,4 +600,3 @@ export default function SoftnovaWebsite() {
     </div>
   )
 }
-

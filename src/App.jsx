@@ -1,6 +1,7 @@
 import React from 'react';
-import './index.css';  // Asegúrate de que los estilos globales se apliquen correctamente
+import './index.css';  
 import Hero from './Hero';
+
 
 function App() {
   return (

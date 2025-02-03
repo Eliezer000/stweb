@@ -1,4 +1,4 @@
-/* Elimina todo lo que no sea relevante para tu portafolio */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -6,4 +6,3 @@
   text-align: center;
 }
 
-/* Si no estás utilizando los elementos .logo, elimínalos */
