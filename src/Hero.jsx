@@ -257,7 +257,7 @@ export default function SoftnovaWebsite() {
     },
     {
       title: "TuaWeb",
-      description: "Plataforma de creación de sitios web drag-and-drop para emprendedores y pequeñas empresas.",
+      description: "Web creada para promocionar y descargar la app de dropshipping de TuaTienda Online",
       image: ProjectMockup,
       link: "https://www.tuaweb.com",
       tag: "Diseño y Desarrollo Web"
